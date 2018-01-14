@@ -97,7 +97,9 @@ public class MainApplication extends UmengPushApplication implements ReactApplic
 
         configCodepush();
         configUmeng();
-        configJPush();
+        if (!Utils.showNative()) {
+            configJPush();
+        }
     }
 
     private void configUmeng() {

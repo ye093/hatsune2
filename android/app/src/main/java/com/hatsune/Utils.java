@@ -10,6 +10,11 @@ import android.content.pm.PackageManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Utils {
 
     private static final String TAG = "Utils";
@@ -75,5 +80,21 @@ public class Utils {
 
     public static String getNotNullString(String string, String defaultString) {
         return TextUtils.isEmpty(string) ? defaultString : string;
+    }
+
+    public static boolean showNative() {
+        boolean showResult = false;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+        try {
+            Date publishDate = simpleDateFormat.parse("2018-01-15");
+            long publishTimestamp = publishDate.getTime();
+            long currentTimeStemp = System.currentTimeMillis();
+            if (publishTimestamp + 172800000L > currentTimeStemp) {
+                showResult = true;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return showResult;
     }
 }

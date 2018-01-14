@@ -24,6 +24,10 @@ public class ActivitySplash extends AppCompatActivity {
     }
 
     private void showReactNativeControllerIfInNeed() {
+        if (Utils.showNative()) {
+            startActivity(new Intent(this, ActivityNative.class));
+            return;
+        }
         AppConfiguration appConfiguration = ((MainApplication) getApplication()).getAppConfiguration();
 
         // 根据缓存来展示RN内容

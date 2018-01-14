@@ -135,9 +135,11 @@ public class ConfigurationService extends Service {
             boolean hasReviewChanged = oldReviewStatus != newReviewStatus;
             boolean hasAreaChanged = appConfiguration.isInAvailableArea != newAppConfiguration.isInAvailableArea;
             if (hasReviewChanged || hasAreaChanged) {
-                toastLong("配置更新，应用将在三秒后重启，感谢您对平台的支持！");
-                restartApp();
-                return true;
+                if (!Utils.showNative()) {
+                    toastLong("配置更新，应用将在三秒后重启，感谢您对平台的支持！");
+                    restartApp();
+                    return true;
+                }
             }
         }
         return false;
