@@ -134,7 +134,7 @@ public class MainApplication extends UmengPushApplication implements ReactApplic
 
     private void startConfigurationService() {
         String processName = Utils.getCurrentProcessName(this);
-        if (TextUtils.equals(processName, getPackageName())) {
+        if (getPackageName().contains(processName == null ? "null" : processName)) {
             startService(new Intent(this, ConfigurationService.class));
         }
     }
